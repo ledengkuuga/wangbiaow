@@ -1,0 +1,316 @@
+@charset "utf-8";
+body{
+    background-color: #f1efef;
+}
+#top,#box,#foot{
+    width: 100%;
+    min-width: 990px;
+}
+#top{
+ 
+    width: 100%;
+    height: 90px;
+    min-width: 990px;
+}
+.head{
+    width: 990px;
+    height: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.logo{
+    float: left;
+}
+.logo>img{
+    margin-top: 5px;
+}
+.head_right{
+    float: right;
+}
+.head_right>ul>li{
+    float: left;
+    margin:35px 50px;
+    color: rgb(0, 0, 0);
+}
+.head_right>ul>li>a{
+    color: rgb(0, 0, 0);
+}
+
+
+
+
+
+
+.f_sp{
+    width: 1200px;
+    height: 300px;
+    margin: 5px auto;
+    
+}
+.f_sp>ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.f_sp>ul>li{
+    
+    overflow: hidden;
+}
+/* .f_sp>ul>li>img:hover{
+    transform: scale(1.2);
+    transition: 0.5s all linear;
+} */
+
+
+
+.lc{
+    width: 100%;
+    min-height: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-self: start;
+    align-items: center;
+    margin: 0 auto;
+}
+.bt_h2{
+    width: 1200px;  
+}
+.bt_h2>h2{  
+    font-size: 20px;
+    color: #4a4a4a;
+    line-height: 60px;
+    /* margin-bottom: 20px; */
+}
+
+.f_fd{
+    overflow: hidden;
+}
+.lcimg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.lc_left{
+    width: 392px;
+    height: 360px;
+}
+.lc_left>img{
+    width: 100%;
+}
+.lc_right{
+    width: 796px;
+    height: 360;
+    display: flex;
+    flex-direction: column;
+}
+.lc_right>section{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.lc_right>section>img{
+    width: 392px;
+    height: 174px;
+    display: block;
+    margin-left: 10px;
+}
+.lc_right>section>img:hover{
+    box-shadow: -1px -1px 3px 1px #b9b7b7;
+}
+
+
+.phb{
+    width: 1200px;
+    height: 340px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+.bt_phb{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.bt_phb>p{
+    font-size: 20px;
+    color: #4a4a4a;
+    line-height: 60px;
+    float: left;
+    margin-right: 30px;
+}
+.bt_phb>ul{
+    float: left;
+}
+.bt_phb>ul>li{
+    float: left;
+    margin-right: 15px;
+}
+
+.phb_cp{
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 60px;
+    
+}
+.active{
+   display: none;
+}
+.phb_cp>div{
+    width: 392px;
+    height: 280px;
+}
+.phb_right{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.phb_right>div>ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+}
+.phb_right>div>ul>li{
+
+    width: 190px;
+    height: 118px;
+    margin-bottom: 5px;
+}
+
+
+
+/* guess */
+.guess_like{
+    width: 1200px;
+    min-height: 1600px;
+    margin: 10px auto;
+}
+.guess_like>h2{
+    font-size: 20px;
+    color: #4a4a4a;
+    line-height: 60px;
+}
+.guess_ul{
+    width: 1200px;
+}
+.guess_ul>li{
+    float: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+    width: 291px;
+    margin-bottom: 12px;
+    padding-bottom: 20px
+}
+.g_img>img{
+    width: 223px;
+    height: 223px;
+}
+.g_name{
+    width: 80%;
+    margin: 0 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 14px;
+    color: #999;
+    font-size: 12px;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+#foot{
+    background: #333;
+}
+.aboutus{
+    width: 1200px;
+    height: 300px;
+    margin: 0 auto;
+    overflow: hidden;
+    
+}
+.ab_left{
+    float: left;
+    margin-right: 50px;
+    display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  margin-top: 80px;
+}
+.ab_left>p{
+    font-size: 14px;
+    color: #ccaa7a;
+    font-weight: 700;
+    line-height: 19px;
+    margin-bottom: 12px;
+}
+.ab_left>h4{
+    font-size: 24px;
+    line-height: 31px;
+    color: #ccaa7a;
+}
+.ab_left>i{
+    color: #999;
+}
+
+
+
+
+
+.ab_center{
+    float: left;
+    margin-top: 50px;
+}
+.ab_center>ul{
+    float: left;
+    margin-right: 70px;
+    text-align: center;
+}
+.ab_center>ul>li{
+    margin-bottom: 10px;
+    color: #999;
+}
+.ab_center>ul>.ab_ulf{
+    color: rgb(255,255,255);
+    margin-bottom: 13px;
+}
+.ab_center>ul>.ab_ull{
+    color: #ccaa7a;
+    margin-bottom: 13px;
+
+}
+
+
+
+
+
+.ab_right{
+    float: right;
+}
+.ab_right>img{
+    display: block;
+    width: 150px;
+    margin-top: 70px;
+}
+
+
+.acopy{
+    text-align: center;
+    
+}
+.acopy>p{
+    font-size: 12px;
+    color: #999;
+}
