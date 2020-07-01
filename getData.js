@@ -23,13 +23,15 @@ lis.forEach(li => {
 })
 
 
-let lis =document.querySelector(".guess_like_slider").querySelectorAll(".goods_a")
+let lis =document.querySelector(".s_goods_list").querySelector("ul").querySelectorAll("li")
 let arr = []
 lis.forEach(li => {
     let obj = {};
-    obj.src = li.querySelector(".swiper-lazy").src;
-    obj.pb = li.querySelector(".p1").innerText;
-    obj.name = li.querySelector(".p2").innerText;
-    obj.price = li.querySelector(".s_price").innerText;
+    
+    obj.pb = li.querySelector(".goods_txt").querySelector(".s_shop").innerText;
+    
+    obj.xl = li.querySelector(".goods_txt").querySelector(".goods_sale").querySelector(".s_sale_num").innerText;
+    obj.name = li.querySelector(".goods_txt").querySelector(".s_goods_name").innerText;
+    obj.price = li.querySelector(".goods_txt").querySelector(".tPrc").querySelector(".fenqi_price").innerText;
     arr.push(obj);
 })

@@ -54,11 +54,28 @@
 button{
     width: 285px;
     height: 40px;
-    background-color: rgb(255, 60, 60);
+    margin-top: 20px;
+    background-color: rgb(184, 11, 11);
     color: #fff;
 }
 .zc{
     position: absolute;
-    left: 10px;
+    left: 20%;
     bottom: 10px;
+}
+span{
+    color: red;
+}
+
+.acopy{
+    width: 900px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 50px;
+    left: 50%;
+    margin-left: -450px;
 }

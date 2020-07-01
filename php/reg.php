@@ -17,6 +17,6 @@ if(mysqli_num_rows($result) == 0){
     echo json_encode($arr);
 
 }else{
-    echo '{"status":"error"}';
+    echo '{"status":"error","msg":"该用户名已被注册"}';
 }
 ?>

@@ -85,3 +85,9 @@ button{
     display: flex;
     justify-content: center;
 }
+
+.cgcx{
+    margin-left: 80px;
+    font-size: 14px;
+    display: none;
+}

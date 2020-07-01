@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,162 +12,190 @@
 
     <title>万表网注册</title>
     <style>
-        
+
     </style>
 </head>
+
 <body>
     <div class="r_head">
         <a href="index.html">
             <img src="../images/logo.png" alt="">
         </a>
-        
+
     </div>
     <div class="r_box">
         <h2>注册万表会员</h2>
         <div class="r_yz"><input type="text" id="zcphone" placeholder="请输入手机号码">
-        <span class="zcphone "></span></div>
+            <span class="zcphone "></span></div>
         <div class="r_yz"><input type="text" id="zcpwd" placeholder="请设置密码">
-        <span class="zcpwd "></span></div>
+            <span class="zcpwd "></span></div>
         <div class="r_yz"><input type="text" class="qrpwd" placeholder="请再次输入密码">
-        <span class="sfyz1 "></span></div>
+            <span class="sfyz1 "></span></div>
         <div class="r_yz">
             <div class="r_yzm"><input type="text" class="yzm" placeholder="请输入验证码">
                 <div class="image-code-box"><canvas width="150" height="46" id="captcha"></canvas></div>
-                </div>
-        <span class="sfyz2 zcyz"></span></div>
-        
-        
-        
-        
+            </div>
+            <span class="sfyz2 zcyz"></span>
+        </div>
+
+
+
+
         <button>立即注册</button>
+        <i class="cgcx">三秒后跳转到登录页面</i>
         <p> <a href="login.html">已注册用户登录</a> </p>
     </div>
     <div class="r_bottom">
         <p>点击“立即注册”，即表示您同意并愿意遵守 <a href="###">万表网用户协议</a> </p>
-        
+
     </div>
 
-    
+
     <script>
-        $(()=>{
-            $("#zcphone").val("13178806321");
+        $(() => {
+            //$("#zcphone").val("13178806321");
 
             let phonezz = /^1[3456789]\d{9}$/;
             let pwdzz = /^[a-zA-Z0-9]{3,6}$/;
 
-            $("#zcphone").on("blur",function(){
-              
-                if(phonezz.test($("#zcphone").val())){
-                   
-                $(".zcphone").css("color","green")
-                $(".zcphone").css("display","block")
-                $(".zcphone").text("✔")
-                $(".zcphone").addClass("zcyz")
-            }else{
-                
-                $(".zcphone").css("color","red")
-                $(".zcphone").text("请输入正确的电话号码")
+            $("#zcphone").on("blur", function () {
+                if ($("#zcphone").val() == "") {
+                    $(".zcphone").css("color", "red")
+                    $(".zcphone").css("display", "block")
+                    $(".zcphone").text("用户名不能为空")
+                    $(".zcphone").removeClass("zcyz")
+                }
+                else if (phonezz.test($("#zcphone").val())) {
+                    $(".zcphone").css("color", "green")
+                    $(".zcphone").css("display", "block")
+                    $(".zcphone").text("✔")
+                    $(".zcphone").addClass("zcyz")
 
-            }
+                }
+                else {
+                    $(".zcphone").css("color", "red")
+                    $(".zcphone").text("请输入正确的电话号码")
+
+                }
             })
 
-            $("#zcpwd").on("blur",function(){
-            if(pwdzz.test($("#zcpwd").val())){
-                $(".zcpwd").css("color","green")
-                $(".zcpwd").css("display","block")
-                $(".zcpwd").text("✔")
-                $(".zcpwd").addClass("zcyz")
+            $("#zcpwd").on("blur", function () {
+                if (pwdzz.test($("#zcpwd").val())) {
+                    $(".zcpwd").css("color", "green")
+                    $(".zcpwd").css("display", "block")
+                    $(".zcpwd").text("✔")
+                    $(".zcpwd").addClass("zcyz")
 
-            }else{
-                $(".zcpwd").css("color","red")
-                $(".zcpwd").text("请输入3到6位的密码")
-                
-            }
+                    $(".qrpwd").on("blur", function () {
+
+                if ($(".qrpwd").val() == "") {
+                    $(".sfyz1").css("color", "red")
+                    $(".sfyz1").css("display", "block")
+                    $(".sfyz1").text("确认密码不能为空")
+                    $(".sfyz1").removeClass("zcyz")
+                }
+                else if ($(".qrpwd").val() == $("#zcpwd").val()) {
+                    $(".sfyz1").css("color", "green")
+                    $(".sfyz1").css("display", "block")
+                    $(".sfyz1").text("✔")
+                    $(".sfyz1").addClass("zcyz")
+                }
+                else {
+                    $(".sfyz1").css("color", "red")
+                    $(".sfyz1").text("密码不一致")
+                    $(".sfyz1").removeClass("zcyz")
+
+                }
             })
 
-            $(".qrpwd").on("blur",function(){
-            if($(".qrpwd").val() == $("#zcpwd").val()){
-                $(".sfyz1").css("color","green")
-                $(".sfyz1").css("display","block")
-                $(".sfyz1").text("✔")
-                $(".sfyz1").addClass("zcyz")
+                } else if ($("#zcpwd").val() == "") {
+                    $(".zcpwd").css("color", "red")
+                    $(".zcpwd").css("display", "block")
+                    $(".zcpwd").text("密码不能为空")
+                    $(".zcpwd").removeClass("zcyz")
+                }
+                else {
+                    $(".zcpwd").css("color", "red")
+                    $(".zcpwd").text("请输入3到6位的密码")
 
-            }else{
-                $(".sfyz1").css("color","red")
-                $(".sfyz1").text("密码不一致")
-
-            }
+                }
             })
+
+            
 
             let imgCodeTarget;
-    let captcha = new Captcha({ lineNum: 10, dotNum: 3, fontSize: 40, length: 4, content: "0123456789" });
+            let captcha = new Captcha({ lineNum: 10, dotNum: 3, fontSize: 40, length: 4, content: "0123456789" });
 
-    captcha.draw(document.querySelector('#captcha'), r => {
-        imgCodeTarget = r;
-        $(".sfyz2").css("display","none")
+            captcha.draw(document.querySelector('#captcha'), r => {
+                imgCodeTarget = r;
+                $(".sfyz2").css("display", "none")
 
-        $(".yzm").on("blur",function(){
-            if($(".yzm").val() == r){
-                $(".sfyz2").css("color","green")
-                $(".sfyz2").css("display","block")
-                $(".sfyz2").text("✔")
-                $(".sfyz2").addClass("zcyz")
+                $(".yzm").on("blur", function () {
+                    if ($(".yzm").val() == r) {
+                        $(".sfyz2").css("color", "green")
+                        $(".sfyz2").css("display", "block")
+                        $(".sfyz2").text("✔")
+                        $(".sfyz2").addClass("zcyz")
 
-            }else{
-                $(".sfyz2").css("display","block")
-                $(".sfyz2").css("color","red")
-                $(".sfyz2").text("验证码不正确")
-                $(".sfyz2").removeClass("zcyz")
+                    } else {
+                        $(".sfyz2").css("display", "block")
+                        $(".sfyz2").css("color", "red")
+                        $(".sfyz2").text("验证码不正确")
+                        $(".sfyz2").removeClass("zcyz")
 
-            }
-            })
-        /* 当用户点击图形变化验证码的时候需要重新校验 */
-       if($("#imageCode").trigger("blur")){
-        $(".sfyz2").css("display","none")
-        $(".sfyz2").removeClass("zcyz")
-       } 
-       
-    });
- })
+                    }
+                })
+                /* 当用户点击图形变化验证码的时候需要重新校验 */
+                if ($("#imageCode").trigger("blur")) {
+                    $(".sfyz2").css("display", "none")
+                    $(".sfyz2").removeClass("zcyz")
+                }
 
-            $("button").on("click",function(){
-                if($(".zcyz").length != "4"){
+            });
+        })
+
+        $("button").on("click", function () {
+            if ($(".zcyz").length != "4") {
                 alert("请输入正确的信息")
                 return
-            }else{
+            } else {
                 let data = {
-            userphone: $.trim($("#zcphone").val()),
-            password: md5($.trim($("#zcpwd").val())).substr(0, 10)
+                    userphone: $.trim($("#zcphone").val()),
+                    password: md5($.trim($("#zcpwd").val())).substr(0, 15)
                 }
-            $.ajax({
-            data,
-            type: "get",
-            dataType: "json",
-            url: "../php/reg.php",
-            success(data) {
-                console.log(data)
-                if (data.status == "success") {
-                    alert("注册成功");
-                    console.log("1")
-                    //window.location.href = "./login.html";
-                } else {
-                    alert("注册未成功");
-                    console.log("0")
+                $.ajax({
+                    data,
+                    type: "get",
+                    dataType: "json",
+                    url: "../php/reg.php",
+                    success(data) {
+                        console.log(data)
+                        if (data.status == "success") {
+                            alert("注册成功");
+                            $(".cgcx").css("display", "block")
+                            setTimeout(function () {
+                                window.location.href = "./login.html";
+                            }, 3000)
 
-                }
+                        } else {
+                            alert(data.msg);
+                            console.log("0")
+
+                        }
+                    }
+                })
+
             }
-        })
-               
-            }
 
-            }
-
-            
-            )
-            
+        }
 
 
- 
+        )
+
+
+
+
     </script>
 </body>
+
 </html>

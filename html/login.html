@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/login.css">
+    <script src="../js/md5.js"></script>
+    <script src="../js/Cookie.js"></script>
     <title>万表网登录</title>
 </head>
+
 <body>
     <div class="dl_head">
         <a href="index.html">
@@ -16,39 +20,75 @@
     <div class="dl_box">
         <div class="box">
             <h2>登录</h2>
-            <div class="u_right"><input type="text" id="username" class="dl_input" placeholder="请输入用户名"><span class="username">/</span></div>
-            <div class="u_right"><input type="text" id="userpwd" class="dl_input" placeholder="请输入密码"><span class="userpwd">*</span></div>
-        <button>登录</button>
-         <div class="zc">
-            <a href="reg.html">注册</a>
+            <div class="u_right"><input type="text" id="username" class="dl_input" placeholder="请输入用户名"><span
+                    class="username"></span></div>
+            <div class="u_right"><input type="text" id="userpwd" class="dl_input" placeholder="请输入密码"><span
+                    class="userpwd"></span></div>
+            <button>登录</button>
+            <div class="zc">
+                <a href="reg.html">注册</a>
+            </div>
         </div>
-        </div>
-       
-        
     </div>
+    <div class="acopy">
+            <p>万表网名表商城 版权所有 2008-2017 ICP备案证书号:粤ICP备09108738号 网监备案:4401060103141</p>
+            <p>广州市万表科技股份有限公司 地址:广州市番禺区番禺大道北60-1号</p>
+            <p>Copyright 2008-2017 WWW.WBIAO.CN.LTD ALL RIGHT RESERVED</p>
+        </div>
     <script src="../js/jquery-3.2.1.js"></script>
     <script>
-         $(()=>{
+        $(() => {
             $("#username").val("13178806321");
 
-           
 
-            $("button").on("click",function(){
-              
-            //     if($("#username").val()){
-                   
-            //     $(".username").css("color","green")
-            //     $(".username").css("display","block")
-            //     $(".username").text("✔")
-            //     $(".username").addClass("zcyz")
-            // }else{
-                
-            //     $(".username").css("color","red")
-            //     $(".username").text("请输入正确的电话号码")
 
-            // }
+            $("button").on("click", function () {
+
+                let username = $.trim($("#username").val())
+                let userpwd = $.trim($("#userpwd").val())
+               
+
+                if (username.length == 0) {
+                    alert("用户名不能为空")
+                    return
+                }
+
+                if (userpwd.length == 0) {
+                    alert("密码不能为空")
+                    return
+                }
+
+                $.ajax({
+                    type: "post",
+                    url: "../php/login.php",
+                    dataType: "json",
+                    data: `username=${username}&userpwd=${md5(userpwd).substr(0, 15)}`,
+                    success(ech) {
+                        if (ech.status == "success") {
+                            
+                            alert(ech.msg);
+                            $(".username").css("display","none")
+                            $(".userpwd").css("display","none")
+                            // localStorage.setItem("username",`${username}`)
+                            // window.location.href = "./index.html";
+                            Cookie.setItem("username", `${username}`,3)
+                             window.location.href = "./index.html";
+
+                        }else if(ech.status == "error1"){
+                            $(".username").css("display","block")
+                            $(".username").text(ech.msg)
+                            
+                        }else if(ech.status == "error2"){
+                            $(".userpwd").css("display","block")
+                            $(".userpwd").text(ech.msg)
+                    }
+                }
+                })
+
+
             })
-         })
+        })
     </script>
 </body>
+
 </html>
