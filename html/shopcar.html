@@ -205,6 +205,16 @@
 
                 let usd = Cookie.getItem("username")
                 let goodsnum = 1
+
+                if($(".goods").length != 0){
+                    $(".shopnone").css("display","none")
+                }else{
+                    $(".shopnone").css("display","block")
+
+                }
+
+                
+
                 //商品-1
                 $(".num_js").on("click", function () {
                     let gsd = $(this).parent().parent().children().eq(1).children().eq(1).attr("id")

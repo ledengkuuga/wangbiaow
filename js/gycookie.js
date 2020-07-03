@@ -1,7 +1,7 @@
 $(()=>{
 
     let loca = Cookie.getItem("username") || []
-    console.log(loca)
+    //console.log(loca)
     
         if(loca != ""){
             $(".jlyh").text(`欢迎您 : ${loca}`)

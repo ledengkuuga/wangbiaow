@@ -40,7 +40,7 @@
                         全部商品
                     </li>
                 </a>
-                <div id="nav_2">
+                <!-- <div id="nav_2">
                     <div class="nav">
                         <ul>
                             <li class="nav_li">
@@ -128,7 +128,7 @@
                         </div>
                     </div>
 
-                </div>
+                </div> -->
                 <li>
                     男表
                 </li>
@@ -225,7 +225,13 @@
                 }).join("");
                 $(".goods_ul").html(html)
 
-
+                $(".g_img").on("click",function(){
+                    let goodsid = $(this).parent().parent().attr("good_id")
+                    let str = location.search
+                    str = goodsid
+                    //console.log(str)
+                    $(window).attr('location',`../html/goodsxq.html?goodsid=${str}`)
+                })
             })
 
             //按钮点击加入购物车

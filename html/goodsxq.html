@@ -33,32 +33,7 @@
     </div>
 
     <div class="box">
-        <div class="box_left">
-            <div class="l_bimg">
-                <img src="../images/xq/xtu1.jpg" alt="">
-            </div>
-            <div class="l_simg">
-                <img src="../images/xq/xtu1.jpg" alt="">
-                <img src="../images/xq/xtu2.jpg" alt="">
-                <img src="../images/xq/xtu3.jpg" alt="">
-            </div>
-        </div>
-        <div class="box_right">
-      
-            <div class="r_img">
-                <p class="g_name">瑞士艺术制表大师爱宝时（EPOS）-Emotion情感系列 罗马假期-水蓝版 3390.152.20.16.25 机械男表</p>
-                <h3 class="g_price">万表价￥<p>5,100</p></h3>
-                <div class="g_num">
-                    <input type="button" value="-" class="num_js">
-                    <input type="text" class="goods_price" value="1">
-                    <input type="button" value="+" class="num_zj">
-                </div>
-                <div class="g_cz">
-                    <a href="shopcar.html"><button>立即购买</button></a>
-                    <button>加入购物车</button>
-                </div>
-            </div>
-        </div>
+
 
     </div>
 
@@ -70,9 +45,77 @@
     <script src="../js/gycookie.js"></script>
     <script src="../js/zx.js"></script>
     <script>
-        $(()=>{
+        $(() => {
+            let usd = Cookie.getItem("username")
+            //console.log(usd)
+            let str = location.search
+            let goodsid = str.split("=")
+            let gsd = goodsid[1]
+            //console.log(gsd)
             $.ajax({
-                url
+                url: "../../wangbiao/php/xq.php",
+                dataType: "json",
+                data: { gsd },
+            }).done(data => {
+                let html = data.map(item => {
+                    return `
+                    <div class="box_left">
+            <div class="l_bimg">
+                <img src="${item.htmlsrc}" alt="">
+            </div>
+            <div class="l_simg">
+                <img src="${item.htmlsrc}" alt="">
+                <img src="${item.htmlsrc}" alt="">
+                <img src="${item.htmlsrc}" alt="">
+            </div>
+        </div>
+        <div class="box_right">
+      
+            <div class="r_img">
+                <p class="g_name">${item.name}</p>
+                <h3 class="g_price">万表价￥<p>${item.price}</p></h3>
+                <div class="g_num">
+                    <input type="button" value="-" class="num_js">
+                    <input type="text" class="goods_price" value="12">
+                    <input type="button" value="+" class="num_zj">
+                </div>
+                <div class="g_cz">
+                    <a href="shopcar.html"><button>立即购买</button></a>
+                    <button class="jrgwc">加入购物车</button>
+                </div>
+            </div>
+        </div>
+                 `
+                }).join("");
+                $(".box").html(html)
+
+                $(".num_js").on("click",function(){
+                   let num =  parseInt($(this).next().val())
+                   
+                   num -= 1
+                    if(num <1){
+                        num = 1
+                    }
+                    $(this).next().val(num)
+                })
+                $(".num_zj").on("click",function(){
+                    let num =  parseInt($(this).prev().val())
+                   num += 1
+                    $(this).prev().val(num)
+                })
+
+
+                $(".jrgwc").on("click", function () {
+                    let num = $(this).parent().prev().children().eq(1).val()
+                    $.ajax({
+                        url: "../../wangbiao/php/xqgaddcar.php",
+                        dataType: "json",
+                        data: { gsd,usd,num },
+                    }).done(data => {
+
+                     })
+                })
+
             })
         })
     </script>
