@@ -342,21 +342,21 @@
                 // })
 
 
-                // $(".onecheck").on("click", function () {
-                //     if ($(this).is(':checked')) {
-                //         console.log("1")
-                //         $(this).parent().parent().children().eq(4).children().addClass("je")
-                //         $(this).parent().parent().addClass("delone")
-                //         js()
-                //     } else {
-                //         $(this).parent().parent().children().eq(4).children().removeClass("je")
-                //         console.log("2")
-                //         // $(".allcheck").prop("checked", false)
-                //         js()
+                $(".onecheck").on("click", function () {
+                    if ($(this).is(':checked')) {
+                        console.log("1")
+                        $(this).parent().parent().children().eq(4).children().addClass("je")
+                        $(this).parent().parent().addClass("delone")
+                        js()
+                    } else {
+                        $(this).parent().parent().children().eq(4).children().removeClass("je")
+                        console.log("2")
+                        // $(".allcheck").prop("checked", false)
+                        js()
 
-                //     }
+                    }
 
-                // })
+                })
 
 
 
