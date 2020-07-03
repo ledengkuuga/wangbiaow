@@ -33,7 +33,7 @@
 
     <div class="car">
         <div class="car_head">
-           
+
             <!-- <ul class="goods">
                 <li class="qx_goods"> <input type="checkbox" class="onecheck" name="checkyn" id=""></li>
                 <li class="xx_goods">
@@ -54,9 +54,12 @@
                 </li>
             </ul> -->
         </div>
+        <div class="shopnone">
+            <p>你的购物车空空如也，点“我”进行购物</p>
+        </div>
         <div class="car_js">
             <ul>
-                <li class="del">清除所选</li>
+                <li class="del"><a href="shop.html" style="color: black;">继续购物</a></li>
                 <li class="alldel">全部清除</li>
                 <li class="zje">总金额:￥ <p>0</p>
                 </li>
@@ -165,9 +168,10 @@
             </ul>
                 
                 `
-                
+
 
                 let html = data.map(item => {
+                    let je = (item.num * item.price)
                     return `
                     <ul class="goods">
                     <li class="qx_goods"> <input type="checkbox" class="onecheck" name="checkyn" id=""></li>
@@ -182,7 +186,7 @@
                     <input type="text" class="goods_price" value="${item.num}">
                     <input type="button" value="+" class="num_zd">
                 </li>
-                <li class="je_goods">￥<p class="">${item.price}</p>
+                <li class="je_goods">￥<p class="">${je}</p>
                 </li>
                 <li class="xg_goods">
                     <input type="button" class="d_goods" value="删除">
@@ -190,147 +194,187 @@
                 </ul>
                  `
                 }).join("");
-                $(".car_head").html(htmlhead+html)
-                
-                
+                $(".car_head").html(htmlhead + html)
+
+
                 xg()
             })
 
 
-            function xg(){
-                
-               let usd = Cookie.getItem("username") 
-            
-            //商品-1
-            $(".num_js").on("click", function () {
-                let d1 = $(this).parent().prev().children().text()
-                let dj = parseInt(d1)
-                let mun1 = $(this).next().val()
-                let munj1 = parseInt(mun1)
-                munj1 -= 1
-                if (munj1 < 1) {
-                    munj1 = 1
-                }
-                $(this).next().val(munj1)
-                $(this).parent().next().children().text(munj1 * dj)
-                js()
+            function xg() {
 
-            })
+                let usd = Cookie.getItem("username")
+                let goodsnum = 1
+                //商品-1
+                $(".num_js").on("click", function () {
+                    let gsd = $(this).parent().parent().children().eq(1).children().eq(1).attr("id")
+                    let d1 = $(this).parent().prev().children().text()
+                    let dj = parseInt(d1)
+                    let mun1 = $(this).next().val()
+                    let munj1 = parseInt(mun1)
+                    munj1 -= 1
+                    goodsnum = munj1
+                    if (munj1 < 1) {
+                        munj1 = 1
+                    }
 
-            //商品+1
-            $(".num_zd").on("click", function () {
-                let d1 = $(this).parent().prev().children().text()
-                let dj = parseInt(d1)
-
-                let mun1 = $(this).prev().val()
-                let munz1 = parseInt(mun1)
-                munz1 += 1
-                $(this).prev().val(munz1)
-                $(this).parent().next().children().text(munz1 * dj)
-                js()
-            })
-
-
-            //数量框
-            $(".goods_price").keyup(function () {
-                let d1 = $(this).parent().prev().children().text()
-                let dj = parseInt(d1)
-                let gd = parseInt($(this).val())
-                if (gd < 1) {
-                    gd = 0
-                }
-                $(this).parent().next().children().text(gd * dj)
-
-
-            })
-
-            $(".d_goods").on("click", function () {
-                //console.log("del")
-                let gsd = $(this).parent().parent().children().eq(1).children().eq(1).attr("id")
-                //console.log(gsd,usd)
                     $.ajax({
-                    url:"../php/delcar.php",
-                data:{gsd,usd},
-                dataType: "json"
-            }).done(data => {
-                 alert(data.msg)
-                // console.log(data)
-            })
-                $(this).parent().parent().remove()
-                js()
-            })
-
-            function js() {
-                let num = 0
-                $(".je").each(function (i, data) {
-                    num += parseInt($(data).text())
-                });
-                $(".zje").children().text(num)
-
-            }
-
-            $(".alldel").on("click", function () {
-                $(".goods").remove()
-
-            })
-
-            
-            $(".del").on("click", function () {
-                $(".delone").remove()
-            //     $.ajax({
-            //         url:"../php/delcar.php",
-            //     data,
-            //     dataType: "json"
-            // }).done(data => {
-            //     console.log(data)
-            // })
-
-            })
-
-
-            $(".onecheck").on("click", function () {
-                if ($(this).is(':checked')) {
-                    console.log("1")
-                    $(this).parent().parent().children().eq(4).children().addClass("je")
-                    $(this).parent().parent().addClass("delone")
+                        url: "../php/jjshopcar.php",
+                        data: { goodsnum, usd ,gsd},
+                        dataType: "json"
+                    }).done(data => {
+                        //alert(data.msg)
+                        // console.log(data)
+                    })
+                    $(this).next().val(munj1)
+                    $(this).parent().next().children().text(munj1 * dj)
                     js()
-                } else {
-                    $(this).parent().parent().children().eq(4).children().removeClass("je")
-                    console.log("2")
-                    // $(".allcheck").prop("checked", false)
+
+                })
+
+                //商品+1
+                $(".num_zd").on("click", function () {
+                    let gsd = $(this).parent().parent().children().eq(1).children().eq(1).attr("id")
+                    let d1 = $(this).parent().prev().children().text()
+                    let dj = parseInt(d1)
+
+                    let mun1 = $(this).prev().val()
+                    let munz1 = parseInt(mun1)
+                    munz1 += 1
+                    goodsnum = munz1
+                    $.ajax({
+                        url: "../php/jjshopcar.php",
+                        data: { goodsnum, usd ,gsd},
+                        dataType: "json"
+                    }).done(data => {
+                        //alert(data.msg)
+                        // console.log(data)
+                    })
+                    $(this).prev().val(munz1)
+                    $(this).parent().next().children().text(munz1 * dj)
                     js()
+                })
+
+
+                //数量框
+                $(".goods_price").keyup(function () {
+                    let gsd = $(this).parent().parent().children().eq(1).children().eq(1).attr("id")
+                    let d1 = $(this).parent().prev().children().text()
+                    let dj = parseInt(d1)
+                    let gd = parseInt($(this).val())
+                    if (gd < 1) {
+                        gd = 0
+                    }
+                    goodsnum = gd
+                    $.ajax({
+                        url: "../php/jjshopcar.php",
+                        data: { goodsnum, usd ,gsd},
+                        dataType: "json"
+                    }).done(data => {
+                        //alert(data.msg)
+                        // console.log(data)
+                    })
+                    $(this).parent().next().children().text(gd * dj)
+
+
+                })
+
+                $(".d_goods").on("click", function () {
+                    //console.log("del")
+                    let gsd = $(this).parent().parent().children().eq(1).children().eq(1).attr("id")
+                    //console.log(gsd,usd)
+                    $.ajax({
+                        url: "../php/delcar.php",
+                        data: { gsd, usd },
+                        dataType: "json"
+                    }).done(data => {
+                        alert(data.msg)
+                        // console.log(data)
+                    })
+                    $(this).parent().parent().remove()
+                    js()
+                })
+
+                function js() {
+                    let num = 0
+                    $(".je").each(function (i, data) {
+                        num += parseInt($(data).text())
+                    });
+                    num = num.toFixed(2)
+                    $(".zje").children().text(num)
 
                 }
 
-            })
-
-
-
-
-            $(".allcheck").click(function () {
-
-                if ($(this).is(':checked')) {
-                    $(".onecheck").each(function (i, data) {
-                        $(data).prop("checked", true)
-                        $(this).parent().parent().addClass("delone")
+                $(".alldel").on("click", function () {
+                    $.ajax({
+                        url: "../php/alldelcar.php",
+                        data: { usd },
+                        dataType: "json"
+                    }).done(data => {
+                        alert(data.msg)
+                        // console.log(data)
                     })
+                    $(".goods").remove()
 
-                    $(".je_goods").children().addClass("je")
-                    js()
-
-                } else {
-                    $(".onecheck").each(function (i, data) {
-                        $(data).prop("checked", false)
-
-                    })
-
-                    $(".je_goods").children().removeClass("je")
-                    js()
+                })
 
 
-                }
+                // $(".del").on("click", function () {
+                //     $(".delone").remove()
+                // //     $.ajax({
+                // //         url:"../php/delcar.php",
+                // //     data,
+                // //     dataType: "json"
+                // // }).done(data => {
+                // //     console.log(data)
+                // // })
 
-            })
+                // })
+
+
+                // $(".onecheck").on("click", function () {
+                //     if ($(this).is(':checked')) {
+                //         console.log("1")
+                //         $(this).parent().parent().children().eq(4).children().addClass("je")
+                //         $(this).parent().parent().addClass("delone")
+                //         js()
+                //     } else {
+                //         $(this).parent().parent().children().eq(4).children().removeClass("je")
+                //         console.log("2")
+                //         // $(".allcheck").prop("checked", false)
+                //         js()
+
+                //     }
+
+                // })
+
+
+
+
+                $(".allcheck").click(function () {
+
+                    if ($(this).is(':checked')) {
+                        $(".onecheck").each(function (i, data) {
+                            $(data).prop("checked", true)
+                            $(this).parent().parent().addClass("delone")
+                        })
+
+                        $(".je_goods").children().addClass("je")
+                        js()
+
+                    } else {
+                        $(".onecheck").each(function (i, data) {
+                            $(data).prop("checked", false)
+
+                        })
+
+                        $(".je_goods").children().removeClass("je")
+                        js()
+
+
+                    }
+
+                })
             }
 
 

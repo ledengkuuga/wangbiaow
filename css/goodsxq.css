@@ -34,3 +34,81 @@
 .hiden{
     display: none;
 }
+
+
+
+
+.box{
+    width: 1200px;
+    height: 660px;
+    margin: 10px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.box_left{
+   
+    width: 500px;
+    background-color: rgb(230, 225, 225);
+   
+}
+.box_right{
+   
+    width: 660px;
+    height: 500px;
+}
+.l_bimg>img{
+    width: 480px;
+    height: 480px;
+    margin: 5px auto;
+}
+.l_simg{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 480px;
+    height: 80px;
+    
+    
+
+}
+.l_simg>img{
+    width: 80px;
+    height: 80px;
+}
+.l_simg>img:nth-child(1){
+    margin-left: 30px;
+}
+.l_simg>img:nth-child(3){
+    margin-right: 30px;
+}
+
+
+
+.r_img>.g_name{
+    font-size: 36px;
+    margin-bottom: 80px;
+}
+.g_price{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-size: 36px;
+    margin-bottom: 80px;
+}
+.g_num{
+    margin-bottom: 60px;
+}
+.g_num>input{
+    width: 60px;
+    height: 40px;
+}
+.g_num>.goods_price{
+    width: 120px;
+    height: 60px;
+    text-align: center;
+}
+.g_cz>a>button,.g_cz>button{
+    width: 260px;
+    height: 60px;
+}
