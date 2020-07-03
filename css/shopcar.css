@@ -108,14 +108,11 @@
   margin-left: 50px;
 
 }
-.xg_goods{
-    
+.xg_goods{ 
     width: 100px;
     margin-left: 40px;
-    
-    
-
 }
+
 
 .car_head>.goods{
     height: 150px;
@@ -123,6 +120,13 @@
 }
 .goods>.qx_goods{
    margin-top: 50px;
+}
+
+.goods>.xx_goods>p{
+    width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .goods>.xx_goods{
     display: flex;
@@ -132,9 +136,7 @@
 .goods>.xx_goods>img{
     margin-right: 20px;
 }
-.goods>.xx_goods>p{
-    background-color: teal;
-}
+
 .goods>.xx_goods ~ li{
     margin-top: 50px;
 }

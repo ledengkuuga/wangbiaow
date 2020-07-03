@@ -160,7 +160,7 @@ body{
 .goods_ul>.goods_li{
     float: left;
 }
-.goods_ul>.goods_li>a>li{
+.goods_ul>.goods_li>li{
    
     display: flex;
     flex-direction: column;

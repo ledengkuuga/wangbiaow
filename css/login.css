@@ -69,13 +69,14 @@ span{
 
 .acopy{
     width: 900px;
+    height: 100px;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: fixed;
-    bottom: 50px;
+    position: relative;
     left: 50%;
-    margin-left: -450px;
+   margin-left: -450px;
+   
 }
