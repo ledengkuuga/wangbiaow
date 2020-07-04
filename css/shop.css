@@ -146,7 +146,7 @@ body{
 
 .goods{
     width: 1200px;
-    min-height: 1600px;
+    min-height: 1000px;
     margin: 10px auto;
 }
 /* .guess_like>h2{
@@ -156,6 +156,7 @@ body{
 } */
 .goods_ul{
     width: 1200px;
+    position: relative;
 }
 .goods_ul>.goods_li{
     float: left;
@@ -184,6 +185,27 @@ body{
     color: #999;
     font-size: 12px;
     text-align: center;
+}
+
+.fy{
+    
+    margin-left: 50%;
+    text-align: center;
+    overflow: hidden;
+}
+.fy>ul{
+  
+    text-align: center;
+    overflow: hidden;
+}
+.fy>ul>li{
+    float: left;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 20px;
+    margin-left: 20px;
+    border: 1px solid #000;
 }
 
 

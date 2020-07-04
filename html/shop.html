@@ -129,25 +129,32 @@
                     </div>
 
                 </div> -->
-                <li>
-                    男表
+                <li px="pxid">
+                    综合排序
                 </li>
-                <li>
-                    女表
+                <li px="pxjgg">
+                    价格由高到低排序
                 </li>
-                <li>
-                    潮表
+                <li px="pxjgd">
+                    价格由低到高排序
                 </li>
-                <li>
-                    手表资讯
-                </li>
+               
             </ul>
         </div>
 
     </div>
     <div class="goods">
         <ul class="goods_ul"></ul>
+        
     </div>
+    <div class="fy" px="pxid">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+         
+        </ul>
+    </div>
+    
     <script src="../../wangbiao/js/jquery-3.2.1.js"></script>
     <script src="../js/Cookie.js"></script>
     <script src="../js/gycookie.js"></script>
@@ -216,7 +223,7 @@
                          <div class="g_img"><img src="${item.htmlsrc}"></div>
                          <div class="pb">${item.xl}</div>
                          <div class="g_name">${item.name}</div>
-                         <div class="g_price">${item.price}</div>
+                         <div class="g_price">￥${item.price}</div>
                          <input type="button" class="incar" value="加入购物车">
                      </li>
                 
@@ -232,6 +239,36 @@
                     //console.log(str)
                     $(window).attr('location',`../html/goodsxq.html?goodsid=${str}`)
                 })
+            })
+
+           
+
+
+            $(".nav_1").children().children().eq(0).siblings().on("click",function(){
+                let pxgz = $(this).attr("px")
+                $(".fy").attr("px",pxgz)
+                $.ajax({
+                url: "../../wangbiao/php/px.php",
+                dataType: "json",
+                data:{pxgz},
+            }).done(data => {
+                let html = data.map(item => {
+                    return `
+                 <div class="goods_li" good_id="${item.goodsid}">
+                  
+                     <li>
+                         <div class="g_img"><img src="${item.htmlsrc}"></div>
+                         <div class="pb">${item.xl}</div>
+                         <div class="g_name">${item.name}</div>
+                         <div class="g_price">￥${item.price}</div>
+                         <input type="button" class="incar" value="加入购物车">
+                     </li>
+                
+                 </div>
+                 `
+                }).join("");
+                $(".goods_ul").html(html)
+            })
             })
 
             //按钮点击加入购物车
@@ -253,6 +290,37 @@
                     location.href = "../html/login.html"
                 }
             })
+
+            $(".fy").children().children().on("click",function(){
+                let pxgz = $(".fy").attr("px")
+                
+                let yn = $(this).index()
+                console.log(yn)
+                $.ajax({
+                url: "../../wangbiao/php/fy.php",
+                dataType: "json",
+                data:{pxgz,yn},
+            }).done(data => {
+                let html = data.map(item => {
+                    return `
+                 <div class="goods_li" good_id="${item.goodsid}">
+                  
+                     <li>
+                         <div class="g_img"><img src="${item.htmlsrc}"></div>
+                         <div class="pb">${item.xl}</div>
+                         <div class="g_name">${item.name}</div>
+                         <div class="g_price">￥${item.price}</div>
+                         <input type="button" class="incar" value="加入购物车">
+                     </li>
+                
+                 </div>
+                 `
+                }).join("");
+                $(".goods_ul").html(html)
+            })
+            })
+
+            
 
         })
     </script>
